@@ -25,7 +25,6 @@ export default function CreateAccount() {
       mobile: mobileNumber
     };
     try {
-      console.log('here');
       const res = await axios.post(`${apicall}api/user/signup`, user);
       // const res = await axios.post('/api/user/signup',user);
       navigate('/signin'); 
@@ -38,7 +37,7 @@ export default function CreateAccount() {
 
   useEffect(()=>{
     setload(false)
-  })
+  },[])
 
   return (
     <>
