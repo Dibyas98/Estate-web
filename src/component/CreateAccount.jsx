@@ -25,7 +25,8 @@ export default function CreateAccount() {
       mobile: mobileNumber
     };
     try {
-      const res = await axios.post(`${apicall}api/user/signup`, user);
+      console.log('here');
+      const res = await axios.post(`api/user/signup`, user, { withCredentials: true });
       // const res = await axios.post('/api/user/signup',user);
       navigate('/signin'); 
     } catch (error) {
