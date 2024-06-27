@@ -98,7 +98,7 @@ export default function CreateListing({setTab}) {
                 setload(false)
                 return setError('You must upload at least one image')
             }
-            const res = await axios.post(`api/listing/create`, ListData, { withCredentials: true })
+            const res = await axios.post(`api/listing/create`, ListData)
             console.log(res.data)
             setError(null)
             setload(false)

@@ -21,7 +21,7 @@ export default function SignIn() {
             setload(true)
             dispatch(signinStart());
             e.preventDefault();
-            const res = await axios.post(`${apicall}api/user/signin`, formData, { withCredentials: true });
+            const res = await axios.post(`${apicall}api/user/signin`, formData);
             console.log(res.data);
             dispatch(signinSuccess(res.data))
             navigate('/')

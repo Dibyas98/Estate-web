@@ -26,7 +26,7 @@ export default function CreateAccount() {
     };
     try {
       console.log('here');
-      const res = await axios.post(`${apicall}api/user/signup`, user, { withCredentials: true });
+      const res = await axios.post(`${apicall}api/user/signup`, user);
       // const res = await axios.post('/api/user/signup',user);
       navigate('/signin'); 
     } catch (error) {
