@@ -5,9 +5,10 @@ import axios from 'axios';
 import { ContextProp } from '../context/Context';
 import PreLoader from './PreLoader';
 import { Trash } from 'lucide-react';
+import { apicall } from '../function/apiweb';
 
 export default function CreateListing({setTab}) {
-    const { loader, setload } = useContext(ContextProp)
+    const { loader, setload,Conterror,setContError  } = useContext(ContextProp)
     const [files, setfiles] = useState([]);
     const [error, setError] = useState(false);
     const [imageload, setimgeload] = useState(false)
@@ -98,7 +99,17 @@ export default function CreateListing({setTab}) {
                 setload(false)
                 return setError('You must upload at least one image')
             }
-            const res = await axios.post(`api/listing/create`, ListData)
+            const tok =JSON.parse(localStorage.getItem('persist:root'))
+            console.log(JSON.parse(tok.user).currentUser.token);
+
+            const res = await axios.post(`${apicall}api/listing/create`, ListData,
+                {
+                    
+                    headers:{
+                        access_token:JSON.parse(tok.user).currentUser.token
+                    }
+                }
+            )
             console.log(res.data)
             setError(null)
             setload(false)
@@ -106,9 +117,8 @@ export default function CreateListing({setTab}) {
             setTab()
 
         } catch (error) {
+            setContError(error.response.data.message)
             setload(false)
-            console.log('error');
-
         }
 
     }
@@ -150,6 +160,8 @@ export default function CreateListing({setTab}) {
             {loader && <PreLoader></PreLoader>}
             <div className='w-full flex flex-col items-center py-8 gap-5'>
                 <h1 className='text-2xl font-semibold'>Create Listing</h1>
+                {Conterror && <h1 className='font-semibold text-xl text-red-500'>{Conterror}</h1>}
+
                 <div className='w-full flex flex-col items-center  px-5 xl:flex-row xl:justify-center xl:items-start xl:gap-10'>
 
                     <div className='w-full flex flex-col gap-3 xl:w-2/6 py-3 md:w-2/5' >

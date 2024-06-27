@@ -7,6 +7,7 @@ export default function Context({ children }) {
 
   const [SideBar,setSideBar] = useState(false);
   const [loader,setload]= useState(true)
+  const [Conterror,setContError] = useState(false)
   
   function handelSideBar(){
     setSideBar(!SideBar)
@@ -21,7 +22,7 @@ export default function Context({ children }) {
   }
 
   return (
-    <ContextProp.Provider value={{ handleFormData,handelSideBar,SideBar,loader,setload }}>
+    <ContextProp.Provider value={{ handleFormData,handelSideBar,SideBar,loader,setload,Conterror,setContError }}>
       {children}
     </ContextProp.Provider>
   )
