@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { ContextProp } from '../context/Context';
 import axios from 'axios';
+import { apicall } from '../function/apiweb';
+import PreLoader from './PreLoader';
 
 export default function CreateAccount() {
   const [userName, setUserName] = useState('');
@@ -10,11 +12,12 @@ export default function CreateAccount() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
 
-  const { handleFormData } = useContext(ContextProp);
+  const { handleFormData,loader,setload } = useContext(ContextProp);
   const navigate = useNavigate();
 
   async function handleForm(e) {
     e.preventDefault();
+    setload(true)
     const user = {
       username: userName,
       email: email,
@@ -23,16 +26,19 @@ export default function CreateAccount() {
     };
     try {
       console.log('here');
-      const res = await axios.post('api/user/signup', user);
+      const res = await axios.post(`${apicall}api/user/signup`, user);
       // const res = await axios.post('/api/user/signup',user);
       navigate('/signin'); 
     } catch (error) {
       // Handle error
       console.error('Error:', error);
+      setload(false)
     }
   }
 
   return (
+    <>
+    {loader && <PreLoader></PreLoader>}
     <div className='w-full flex justify-center py-10'>
       <div className='w-4/5 flex flex-col items-center gap-4 b xl:w-2/6 xl:px-10'>
         <h2 className='text-3xl font-bold'>Create Account</h2>
@@ -48,5 +54,6 @@ export default function CreateAccount() {
         </form>
       </div>
     </div>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ChevronRight } from 'lucide-react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux'
@@ -6,9 +6,13 @@ import { signinStart, signinSuccess } from '../redux/userSlice';
 import { useNavigate } from 'react-router-dom'
 import { ContextProp } from '../context/Context';
 import PreLoader from './PreLoader';
+import { apicall } from '../function/apiweb';
 
 export default function SignIn() {
     const { loader, setload } = useContext(ContextProp)
+    useEffect(()=>{
+        setload(false)
+    },[])
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const [formData, setformData] = useState({});
@@ -17,7 +21,7 @@ export default function SignIn() {
             setload(true)
             dispatch(signinStart());
             e.preventDefault();
-            const res = await axios.post('api/user/signin', formData, { withCredentials: true });
+            const res = await axios.post(`${apicall}api/user/signin`, formData, { withCredentials: true });
             console.log(res.data);
             dispatch(signinSuccess(res.data))
             navigate('/')
