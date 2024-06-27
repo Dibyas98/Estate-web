@@ -23,7 +23,6 @@ export default function SignIn() {
             dispatch(signinStart());
             e.preventDefault();
             const res = await axios.post(`${apicall}api/user/signin`, formData,);
-            console.log(res.data);
             Cookies.set("access_token",res.data.token)
             dispatch(signinSuccess(res.data))
             setContError(null)

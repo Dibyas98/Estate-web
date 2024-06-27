@@ -30,7 +30,7 @@ export default function Navbar() {
                         {CurrentLogin.user.currentUser == null ? <>
                             <Link to={'/signin'}>Sign in</Link>
                             <Link to={'/signup'}>Create Account</Link></> : <>
-                            <Link to={'/listing'}>Create Listing</Link>
+                            <Link to={'/listing'}>My Listing</Link>
                             <Link to={'/logout'}>Logout</Link></>}
                     </div>
                 </div>
