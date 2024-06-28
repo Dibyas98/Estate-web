@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from 'react'
 import CreateListing from './CreateListing';
 import '../assets/style/listingtab.css'
+import axios from 'axios';
+import MyListing from './MyListing';
 
 function Listing() {
     let[tab,setTab]= useState('myListing');
@@ -19,9 +21,11 @@ function Listing() {
             </div>
 
             {tab=='createlisting' && <CreateListing setTab={handelTab}></CreateListing>}
-            {/* {tab=='myListing' && <h1>Listing</h1>} */}
+            {tab=='myListing' && <MyListing></MyListing>}
+            
         </div>
     )
 }
+
 
 export default Listing

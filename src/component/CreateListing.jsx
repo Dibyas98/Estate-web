@@ -13,6 +13,7 @@ export default function CreateListing({setTab}) {
     const [error, setError] = useState(false);
     const [imageload, setimgeload] = useState(false)
     const fileRef = useRef(null)
+    
     const list = {
         imageUrls: [],
         name: '',
@@ -45,7 +46,9 @@ export default function CreateListing({setTab}) {
     useEffect(() => {
         setload(false)
     }, [])
-
+    useEffect(()=>{
+        setError(false)
+    },[ListData])
 
     const handelImageUpload = () => {
         setimgeload(true)
@@ -100,7 +103,6 @@ export default function CreateListing({setTab}) {
                 return setError('You must upload at least one image')
             }
             const tok =JSON.parse(localStorage.getItem('persist:root'))
-            console.log(JSON.parse(tok.user).currentUser.token);
 
             const res = await axios.post(`${apicall}api/listing/create`, ListData,
                 {
@@ -140,6 +142,8 @@ export default function CreateListing({setTab}) {
                     }
                 },
                 (error) => {
+                    setContError(error)
+                    setimgeload(false)
                     reject(error);
                 },
                 () => {
