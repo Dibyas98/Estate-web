@@ -6,6 +6,8 @@ import { ContextProp } from '../context/Context';
 import PreLoader from './PreLoader';
 import { Trash } from 'lucide-react';
 import { apicall } from '../function/apiweb';
+import { useDispatch } from 'react-redux';
+import { createList } from '../redux/listingSlice';
 
 export default function CreateListing({setTab}) {
     const { loader, setload,Conterror,setContError  } = useContext(ContextProp)
@@ -13,6 +15,7 @@ export default function CreateListing({setTab}) {
     const [error, setError] = useState(false);
     const [imageload, setimgeload] = useState(false)
     const fileRef = useRef(null)
+    const dispatch = useDispatch()
     
     const list = {
         imageUrls: [],
@@ -112,7 +115,7 @@ export default function CreateListing({setTab}) {
                     }
                 }
             )
-            console.log(res.data)
+            dispatch(createList(ListData))
             setError(null)
             setload(false)
             setListData(list)
@@ -136,7 +139,7 @@ export default function CreateListing({setTab}) {
                 (snapshot) => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     console.log(progress);
-                    if (progress > 99) {
+                    if (progress == 100) {
                         setimgeload(false)
                         fileRef.current.value = ''
                     }

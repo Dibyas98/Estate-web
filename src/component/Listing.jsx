@@ -28,4 +28,4 @@ function Listing() {
 }
 
 
-export default Listing
+export default React.memo(Listing)
