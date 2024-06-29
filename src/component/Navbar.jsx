@@ -13,7 +13,7 @@ export default function Navbar() {
 
 
     return (
-        <div className='w-full h-10 xl:h-14 bg-[#E2E8F0] flex justify-center items-center px-2'>
+        <div className='w-full h-10 xl:h-14 bg-[#E2E8F0] flex justify-center items-center px-2 sticky z-10 top-0'>
             <div className='w-full xl:w-9/12 h-full flex items-center justify-between'>
                 <div>
                     <h1>Dibya Estate</h1>

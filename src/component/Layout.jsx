@@ -7,9 +7,13 @@ export default function Layout() {
   return (
     <>
       <Navbar></Navbar>
-      <Suspense fallback={<PreLoader></PreLoader>}>
-        <Outlet></Outlet>
-      </Suspense>
+      <section className="px-3 w-full flex justify-center">
+        <div className="w-full xl:w-2/3 ">
+          <Suspense fallback={<PreLoader></PreLoader>}>
+            <Outlet></Outlet>
+          </Suspense>
+        </div>
+      </section>
     </>
   );
 }

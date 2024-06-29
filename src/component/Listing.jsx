@@ -15,7 +15,7 @@ function Listing() {
     }
     return (
         <div className='w-full flex justify-center flex-col'>
-            <div className='flex  justify-center w-full py-2 font-semibold' onClick={()=> handelTab()}>
+            <div className='flex  justify-center w-full py-2 font-semibold sticky z-10 top-10 xl:top-14 bg-white' onClick={()=> handelTab()}>
                 <button className={`w-2/5  flex flex-col  items-center  gap-2 ${tab=='createlisting'?'tab':null}`}><span className=''>Create Listing</span></button>
                 <button className={`w-2/5  flex flex-col  items-center  gap-2 ${tab=='myListing'?'tab':null}`}><span>My Listing</span></button>
             </div>

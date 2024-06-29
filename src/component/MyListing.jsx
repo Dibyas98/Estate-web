@@ -7,6 +7,8 @@ import { deleteList, listing } from '../redux/listingSlice';
 import { FetchApi } from '../function/Mylisting';
 import { nanoid } from '@reduxjs/toolkit';
 import PreLoader from './PreLoader';
+import { Link } from 'react-router-dom';
+import LocalStorage from '../function/LocalStorage';
 
 
 
@@ -28,6 +30,7 @@ const Button = ({ title, icon: Icon,func,data }) => {
 
 
 const ListingCard = ({ data,deleteFunc }) => {
+    const token = LocalStorage()
     return (
         <section className='w-full h-28   py-2'>
             <div className='w-full h-full flex gap-5 items-center justify-center'>
@@ -49,7 +52,7 @@ const ListingCard = ({ data,deleteFunc }) => {
                     </div>
                 </div>
                 <div className='flex flex-col gap-3'>
-                    <Button title={'View'} icon={Eye}></Button>
+                    <Link to={`/listdetails?${token}`}><Button title={'View'} icon={Eye}></Button></Link>
                     <Button title={'Delete'} icon={Trash2} data={data} func={deleteFunc}></Button>
                 </div>
             </div>
@@ -94,9 +97,9 @@ function MyListing() {
 
     const list = useSelector((store) => store.list)
     return (
-        <section className='w-full flex flex-col gap-2 pt-2'>
+        <section className='w-full flex flex-col gap-2 pt-2 px-2'>
              {list.load && <PreLoader></PreLoader>}
-            <h1 className='text-2xl font-semibold'>Listing</h1>
+            <h1 className='text-2xl font-semibold text-center'>Listing</h1>
             {
                list.list && list.list.map((ele) => {
                     return <ListingCard data={ele} key={nanoid()} deleteFunc={DeleteList}></ListingCard>

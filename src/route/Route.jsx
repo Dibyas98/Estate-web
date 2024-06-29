@@ -6,7 +6,7 @@ import SignIn from '../component/SignIn'
 import CreateAccount from '../component/CreateAccount'
 import Home from '../component/Home'
 import Logout from '../component/Logout';
-import { LazyListing } from '../lazyLoading/LazyLoader';
+import { LazyListing, LazyListView } from '../lazyLoading/LazyLoader';
 
 
 export default function Route() {
@@ -17,7 +17,7 @@ export default function Route() {
           children:[
             {
               path:'/',
-              element:<Home></Home>
+              element:<LazyListView></LazyListView>
             },
             {
               path:'/about',
@@ -38,6 +38,10 @@ export default function Route() {
             {
               path:'/logout',
               element:<Logout></Logout>
+            },
+            {
+              path:'/listdetails',
+              element:<LazyListView></LazyListView>
             }
           ]
         }

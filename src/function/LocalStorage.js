@@ -1,3 +1,5 @@
 export default function(){
-    JSON.parse(localStorage.getItem('persist:root'))
+     const acco= JSON.parse(localStorage.getItem('persist:root')).user
+     return JSON.parse(acco).currentUser.token
+     
 }
