@@ -98,7 +98,7 @@ function MyListing() {
              {list.load && <PreLoader></PreLoader>}
             <h1 className='text-2xl font-semibold'>Listing</h1>
             {
-                list.list.map((ele) => {
+               list.list && list.list.map((ele) => {
                     return <ListingCard data={ele} key={nanoid()} deleteFunc={DeleteList}></ListingCard>
                 })
             }
