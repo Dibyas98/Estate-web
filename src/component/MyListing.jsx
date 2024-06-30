@@ -52,7 +52,7 @@ const ListingCard = ({ data,deleteFunc }) => {
                     </div>
                 </div>
                 <div className='flex flex-col gap-3'>
-                    <Link to={`/listdetails?${token}`}><Button title={'View'} icon={Eye}></Button></Link>
+                    <Link to={`/listdetails/${data._id}?${token}`}><Button title={'View'} icon={Eye}></Button></Link>
                     <Button title={'Delete'} icon={Trash2} data={data} func={deleteFunc}></Button>
                 </div>
             </div>

@@ -40,7 +40,7 @@ export default function Route() {
               element:<Logout></Logout>
             },
             {
-              path:'/listdetails',
+              path:'/listdetails/:listId',
               element:<LazyListView></LazyListView>
             }
           ]

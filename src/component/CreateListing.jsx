@@ -8,6 +8,7 @@ import { Trash } from 'lucide-react';
 import { apicall } from '../function/apiweb';
 import { useDispatch } from 'react-redux';
 import { createList } from '../redux/listingSlice';
+import LocalStorage from '../function/LocalStorage';
 
 export default function CreateListing({setTab}) {
     const { loader, setload,Conterror,setContError  } = useContext(ContextProp)
@@ -105,13 +106,12 @@ export default function CreateListing({setTab}) {
                 setload(false)
                 return setError('You must upload at least one image')
             }
-            const tok =JSON.parse(localStorage.getItem('persist:root'))
 
             const res = await axios.post(`${apicall}api/listing/create`, ListData,
                 {
                     
                     headers:{
-                        access_token:JSON.parse(tok.user).currentUser.token
+                        access_token:LocalStorage()
                     }
                 }
             )
